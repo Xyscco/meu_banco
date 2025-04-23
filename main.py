@@ -18,6 +18,33 @@ def main(page: ft.Page):
         dlg_modal.open = False
         e.control.page.update()
 
+    rail = ft.NavigationRail(
+        selected_index=0,
+        label_type=ft.NavigationRailLabelType.ALL,
+        min_width=100,
+        min_extended_width=400,
+        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
+        group_alignment=-0.9,
+        destinations=[
+            ft.NavigationRailDestination(
+                icon=ft.Icons.ARROW_DOWNWARD_ROUNDED,
+                selected_icon=ft.Icons.ARROW_DOWNWARD_ROUNDED,
+                label="Depositar",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icon(ft.Icons.ARROW_UPWARD_ROUNDED),
+                selected_icon=ft.Icon(ft.Icons.ARROW_UPWARD_ROUNDED),
+                label="Sacar",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icons.INSERT_DRIVE_FILE,
+                selected_icon=ft.Icon(ft.Icons.INSERT_DRIVE_FILE),
+                label_content=ft.Text("Extrato"),
+            ),
+        ],
+        on_change=lambda e: print("Selected destination:", e.control.selected_index),
+    )
+
     dlg_modal = ft.AlertDialog(
         modal=True,
         title=ft.Text("Sobre a aplicação"),
@@ -51,7 +78,19 @@ def main(page: ft.Page):
         ],
     )
 
-    page.add(app_bar)
+    page.add(
+        app_bar,
+        ft.Row(
+        [
+            rail,
+            ft.VerticalDivider(width=1),
+            ft.Column(
+                [ft.Text("Body!")], alignment=ft.MainAxisAlignment.START, expand=True
+            ),
+        ],
+        width=400,
+        height=page.window.height - 70,
+    ))
 
 
 ft.app(target=main)
