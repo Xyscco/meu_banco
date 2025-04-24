@@ -1,4 +1,5 @@
 import flet as ft
+from app.view.movimentacao_view import movimentacao_view
 
 def fechar_aplicacao(page: ft.Page):
     page.window.destroy()
@@ -21,20 +22,15 @@ def main(page: ft.Page):
     rail = ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
-        min_width=100,
+        min_width=150,
         min_extended_width=400,
-        leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
+        # leading=ft.FloatingActionButton(icon=ft.Icons.CREATE, text="Add"),
         group_alignment=-0.9,
         destinations=[
             ft.NavigationRailDestination(
-                icon=ft.Icons.ARROW_DOWNWARD_ROUNDED,
-                selected_icon=ft.Icons.ARROW_DOWNWARD_ROUNDED,
-                label="Depositar",
-            ),
-            ft.NavigationRailDestination(
-                icon=ft.Icon(ft.Icons.ARROW_UPWARD_ROUNDED),
-                selected_icon=ft.Icon(ft.Icons.ARROW_UPWARD_ROUNDED),
-                label="Sacar",
+                icon=ft.Icons.COMPARE_ARROWS_SHARP,
+                selected_icon=ft.Icons.COMPARE_ARROWS_SHARP,
+                label="Movimentação",
             ),
             ft.NavigationRailDestination(
                 icon=ft.Icons.INSERT_DRIVE_FILE,
@@ -85,7 +81,8 @@ def main(page: ft.Page):
             rail,
             ft.VerticalDivider(width=1),
             ft.Column(
-                [ft.Text("Body!")], alignment=ft.MainAxisAlignment.START, expand=True
+                [movimentacao_view(ft, page)], 
+                alignment=ft.MainAxisAlignment.START, expand=True
             ),
         ],
         width=400,
