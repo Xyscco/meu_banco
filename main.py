@@ -1,5 +1,6 @@
 import flet as ft
 from app.view.movimentacao_view import movimentacao_view
+from app.view.cliente_view import cliente_view
 
 def fechar_aplicacao(page: ft.Page):
     page.window.destroy()
@@ -31,6 +32,11 @@ def main(page: ft.Page):
                 icon=ft.Icons.COMPARE_ARROWS_SHARP,
                 selected_icon=ft.Icons.COMPARE_ARROWS_SHARP,
                 label="Movimentação",
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.Icons.PERSON,
+                selected_icon=ft.Icons.PERSON,
+                label="Clientes",
             ),
             ft.NavigationRailDestination(
                 icon=ft.Icons.INSERT_DRIVE_FILE,
@@ -81,11 +87,12 @@ def main(page: ft.Page):
             rail,
             ft.VerticalDivider(width=1),
             ft.Column(
-                [movimentacao_view(ft, page)], 
+                # [movimentacao_view(ft, page)], 
+                [cliente_view(page)],
                 alignment=ft.MainAxisAlignment.START, expand=True
             ),
         ],
-        width=400,
+        width=page.window.width,
         height=page.window.height - 70,
     ))
 

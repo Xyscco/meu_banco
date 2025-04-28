@@ -2,7 +2,7 @@ from models.cliente import Cliente
 from typing import Optional, List
 from datetime import date
 
-class ClienteController:
+class cliente_controller:
     def cadastrar_cliente(conn, cliente):
         cursor = conn.conectar()
         cursor.execute('''
